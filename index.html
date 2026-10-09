@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olvera RP Store | Exclusive Vehicles & Perks</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: {
+                            600: '#800020',
+                            700: '#66001a',
+                            800: '#4d0013',
+                            500: '#990026'
+                        },
+                        dark: {
+                            900: '#0f0f11',
+                            800: '#18181b',
+                            700: '#27272a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f0f11;
+            color: #ffffff;
+            font-family: 'Poppins', 'Cairo', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #800020;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #990026;
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-white min-h-screen flex flex-col selection:bg-burgundy-600 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-md border-b border-burgundy-600/30 px-6 lg:px-16 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-4 space-x-reverse">
+            <!-- Server Logo with no glow, transparent background, enlarged -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="design6.png" alt="Olvera Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/100x100/transparent/ffffff?text=Logo'">
+                <div class="text-2xl font-extrabold tracking-wider flex items-center gap-2">
+                    OLVERA <span class="text-burgundy-600">RP</span> <span class="text-gray-400 font-normal text-lg">STORE</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <a href="#vehicles" class="hover:text-burgundy-500 transition-colors">Vehicles</a>
+            <a href="#packages" class="hover:text-burgundy-500 transition-colors">VIP Packages</a>
+            <a href="#about" class="hover:text-burgundy-500 transition-colors">Server Info</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Cart Trigger Button -->
+            <button onclick="toggleCart()" class="relative p-2.5 bg-dark-800 hover:bg-dark-700 rounded-xl border border-white/5 transition-all text-white flex items-center justify-center">
+                <i class="fa-solid fa-cart-shopping text-lg"></i>
+                <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-burgundy-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+            </button>
+
+            <!-- Discord Button -->
+            <a href="https://discord.gg/olverarp" target="_blank" class="hidden sm:flex items-center gap-2 bg-burgundy-600 hover:bg-burgundy-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg shadow-burgundy-600/20 transition-all hover:-translate-y-0.5">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-white bg-dark-800 rounded-lg">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex flex-col items-center justify-center space-y-6 text-xl">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-2xl text-gray-400 hover:text-white">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="#vehicles" onclick="toggleMobileMenu()" class="hover:text-burgundy-500">Vehicles</a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="hover:text-burgundy-500">VIP Packages</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="hover:text-burgundy-500">Server Info</a>
+        <a href="https://discord.gg/olverarp" target="_blank" class="bg-burgundy-600 px-6 py-3 rounded-xl flex items-center gap-2">
+            <i class="fab fa-discord"></i> Join Discord
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative py-24 px-6 text-center overflow-hidden border-b border-white/5 bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(15,15,17,0.85), rgba(15,15,17,0.98)), url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1920&q=80');">
+        <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-burgundy-600/20 border border-burgundy-600/40 text-burgundy-500 text-sm font-semibold tracking-wide uppercase">
+                Season 4 Live Now
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+                Welcome to <span class="text-burgundy-600">Olvera Store</span>
+            </h1>
+            <p class="text-gray-400 text-base md:text-lg max-w-xl mx-auto">
+                Elevate your roleplay experience with custom-tuned vehicles, exclusive properties, and elite VIP tiers. Instant delivery via Discord ticket system.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 pt-4">
+                <a href="#vehicles" class="bg-burgundy-600 hover:bg-burgundy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-burgundy-600/30 transition-all hover:-translate-y-1">
+                    Browse Vehicles
+                </a>
+                <a href="#packages" class="bg-dark-800 hover:bg-dark-700 text-white font-bold px-8 py-3.5 rounded-xl border border-white/10 transition-all hover:-translate-y-1">
+                    View VIP Packages
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Store Section -->
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-16 w-full">
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+            <h2 id="vehicles" class="text-3xl font-bold border-l-4 border-burgundy-600 pl-4">Exclusive Vehicles</h2>
+            <div class="flex gap-2 bg-dark-800 p-1 rounded-xl border border-white/5">
+                <button onclick="filterProducts('all')" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-burgundy-600 text-white transition-all" data-filter="all">All Items</button>
+                <button onclick="filterProducts('supercar')" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition-all" data-filter="supercar">Supercars</button>
+                <button onclick="filterProducts('sports')" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition-all" data-filter="sports">Sports</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product Item 1 -->
+            <div class="product-card group bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-burgundy-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-burgundy-600/10 flex flex-col" data-category="supercar">
+                <div class="relative overflow-hidden h-52">
+                    <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=600&q=80" alt="GT-R R35" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Olvera+Vehicle'">
+                    <span class="absolute top-3 right-3 bg-burgundy-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Supercar</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Custom GT-R R35</h3>
+                    <p class="text-gray-400 text-sm mb-6 flex-grow">Custom handling, custom exhaust sound note, and unique burgundy livery included.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                        <span class="text-2xl font-extrabold text-amber-400">$15.00</span>
+                        <button onclick="addToCart('Custom GT-R R35', 15, 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=600&q=80')" class="bg-burgundy-600 hover:bg-burgundy-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 2 -->
+            <div class="product-card group bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-burgundy-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-burgundy-600/10 flex flex-col" data-category="supercar">
+                <div class="relative overflow-hidden h-52">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Porsche 911" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Olvera+Vehicle'">
+                    <span class="absolute top-3 right-3 bg-burgundy-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Supercar</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Porsche 911 Turbo S</h3>
+                    <p class="text-gray-400 text-sm mb-6 flex-grow">Extreme top speed, responsive drift handling, and custom wheel options.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                        <span class="text-2xl font-extrabold text-amber-400">$20.00</span>
+                        <button onclick="addToCart('Porsche 911 Turbo S', 20, 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80')" class="bg-burgundy-600 hover:bg-burgundy-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 3 -->
+            <div class="product-card group bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-burgundy-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-burgundy-600/10 flex flex-col" data-category="sports">
+                <div class="relative overflow-hidden h-52">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80" alt="BMW M4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Olvera+Vehicle'">
+                    <span class="absolute top-3 right-3 bg-blue-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Sports</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">BMW M4 Competition</h3>
+                    <p class="text-gray-400 text-sm mb-6 flex-grow">The ultimate street racer with full performance tune and body kit unlocked.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                        <span class="text-2xl font-extrabold text-amber-400">$12.00</span>
+                        <button onclick="addToCart('BMW M4 Competition', 12, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80')" class="bg-burgundy-600 hover:bg-burgundy-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIP Packages Section -->
+        <div id="packages" class="mt-24">
+            <h2 class="text-3xl font-bold border-l-4 border-burgundy-600 pl-4 mb-10">VIP Memberships & Packages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- VIP Silver -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-white/5 relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <span class="text-burgundy-500 font-bold uppercase tracking-wider text-sm">Monthly Tier</span>
+                        <h3 class="text-3xl font-extrabold mt-1 mb-4">Olvera VIP Silver</h3>
+                        <p class="text-gray-400 text-sm mb-6">Includes monthly stipend, priority queue bypass, custom garage slot, and 1 free sports car rental.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-burgundy-500"></i> Priority Queue Bypass</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-burgundy-500"></i> $50,000 In-Game Cash Monthly</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-burgundy-500"></i> 1 Custom License Plate</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-6 border-t border-white/5">
+                        <span class="text-3xl font-extrabold text-amber-400">$10.00 <span class="text-xs text-gray-400 font-normal">/mo</span></span>
+                        <button onclick="addToCart('Olvera VIP Silver', 10, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80')" class="bg-burgundy-600 hover:bg-burgundy-700 text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIP Gold -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-burgundy-600/50 relative overflow-hidden flex flex-col justify-between shadow-xl shadow-burgundy-600/10">
+                    <div class="absolute top-0 right-0 bg-burgundy-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">Most Popular</div>
+                    <div>
+                        <span class="text-amber-400 font-bold uppercase tracking-wider text-sm">Elite Tier</span>
+                        <h3 class="text-3xl font-extrabold mt-1 mb-4">Olvera VIP Legend</h3>
+                        <p class="text-gray-400 text-sm mb-6">Ultimate roleplay freedom with VIP housing, uncompromised queue priority, and custom engine sound tuning.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Supreme Queue Priority</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> $150,000 In-Game Cash Monthly</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Exclusive VIP Mansion Access</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> 2 Free Custom Import Cars</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-6 border-t border-white/5">
+                        <span class="text-3xl font-extrabold text-amber-400">$25.00 <span class="text-xs text-gray-400 font-normal">/mo</span></span>
+                        <button onclick="addToCart('Olvera VIP Legend', 25, 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=600&q=80')" class="bg-burgundy-600 hover:bg-burgundy-700 text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Shopping Cart Modal / Drawer -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex justify-end">
+        <div class="w-full max-w-md bg-dark-800 h-full p-6 flex flex-col justify-between border-l border-white/10 shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-burgundy-600"></i> Your Cart
+                    </h3>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <div id="cart-items" class="py-4 space-y-4 max-h-[60vh] overflow-y-auto">
+                    <!-- Cart items injected dynamically -->
+                    <p class="text-gray-400 text-center py-8">Your cart is empty.</p>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-4 space-y-4">
+                <div class="flex items-center justify-between text-lg font-bold">
+                    <span>Total:</span>
+                    <span id="cart-total" class="text-amber-400">$0.00</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-burgundy-600 hover:bg-burgundy-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-burgundy-600/30 transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-discord"></i> Checkout via Discord Ticket
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-dark-800 border border-burgundy-600 text-white px-6 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-burgundy-500 text-lg"></i>
+        <span id="toast-message">Item added to cart successfully!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-white/5 py-10 px-6 text-center text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="design6.png" alt="Logo" class="h-8 w-auto object-contain">
+                <span class="font-bold text-white">OLVERA RP</span> &copy; 2026. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="https://discord.gg/olverarp" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-discord text-lg"></i> Discord</a>
+                <a href="#vehicles" class="hover:text-white transition-colors">Store</a>
+                <a href="#" class="hover:text-white transition-colors">Rules</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        let cart = [];
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function addToCart(name, price, image) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+            updateCartUI();
+            showToast(`Added ${name} to cart!`);
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cart-badge');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (totalCount > 0) {
+                cartBadge.textContent = totalCount;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-400 text-center py-8">Your cart is empty.</p>';
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="flex items-center justify-between bg-dark-900 p-3 rounded-xl border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='https://placehold.co/100x100/18181b/ffffff?text=Car'">
+                            <div>
+                                <h4 class="font-bold text-sm">${item.name}</h4>
+                                <span class="text-xs text-amber-400">$${item.price.toFixed(2)} x ${item.quantity}</span>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.name}')" class="text-gray-500 hover:text-red-400 p-2 transition-colors">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        function filterProducts(category) {
+            // Update active tab buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('bg-burgundy-600', 'text-white');
+                    btn.classList.remove('text-gray-400');
+                } else {
+                    btn.classList.remove('bg-burgundy-600', 'text-white');
+                    btn.classList.add('text-gray-400');
+                }
+            });
+
+            // Filter grid items
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemSummary = cart.map(i => `${i.quantity}x ${i.name}`).join(', ');
+            
+            // Open discord ticket channel or invite
+            window.open('https://discord.gg/olverarp', '_blank');
+        }
+    </script>
+</body>
+</html>
